@@ -26,10 +26,12 @@ class Products extends CI_Controller
     $validation = $this->form_validation;
     $validation->set_rules($product->rules());
 
-    if($validation->run)
+    if($validation->run())
     {
       $product->save();
+      redirect('admin/products');
       $this->session->set_flashdata('success','berhasil disimpan');
+
     }
     $this->load->view('admin/product/new_form');
   }
@@ -42,10 +44,12 @@ class Products extends CI_Controller
     $validation = $this->form_validation;
     $validation->set_rules($product->rules());
 
-    if($validation->run)
+    if($validation->run())
     {
       $product->update();
+      redirect('admin/products');
       $this->session->set_flashdata('success','berhasil disimpan');
+      
     }
     $data['product'] = $product->getById($id);
     if(!$data['product']) show_404();
