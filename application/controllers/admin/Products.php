@@ -47,9 +47,8 @@ class Products extends CI_Controller
     if($validation->run())
     {
       $product->update();
-      redirect('admin/products');
       $this->session->set_flashdata('success','berhasil disimpan');
-      
+
     }
     $data['product'] = $product->getById($id);
     if(!$data['product']) show_404();
